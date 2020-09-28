@@ -13,20 +13,31 @@
     <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Curso" class="control-label"></label>
-                <select name="" id="curso" class="form-control">
-                    @for (var i = 0; i < Model.Cursos.Count(); i++)
-                    {
-                        <option asp-for="@Model.Cursos[i].Id" >@Model.Cursos[i].Curso (@Model.Cursos[i].FechaInicio - @Model.Cursos[i].FechaFin)</option>
-                    }
-                </select>
-                <span asp-validation-for="Curso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label asp-for="Curso" class="control-label"></label>
+                    <select asp-for="Curso" name="Curso" id="curso" class="form-control" asp-items="@(new SelectList(Model.Cursos, "Id" , "Curso"))">
+                    </select>
+                    <span asp-validation-for="Curso" class="text-danger"></span>
+                </div>
+                <div class="form-group col-5">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <input id="datepicker" asp-for="Fecha" type="text" value="@ViewBag.FechaHoy" class="form-control" placeholder="Fecha" aria-label="Fecha" aria-describedby="basic-addon1">
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+                
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script>
+                    $(function () {
+                        $("#datepicker").datepicker({
+                            dateFormat: "yy-mm-dd"
+                        });
+                    });
+                </script>
+                <div class="form-group col-2">
+                    <input type="submit" value="Enviar" class="btn btn-danger" />
+                </div>
             </div>
             <label asp-for="Empleados" class="control-label"></label>
             <div style="width: 100%" class="row">
@@ -35,15 +46,15 @@
                     <input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
                     <input type="hidden" asp-for="@Model.Empleados[i].Nombre" />
                     <input type="hidden" asp-for="@Model.Empleados[i].Apellido" />
-                    <p class="col-4" style="font-size:0.9em">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo)</p>
-                    <input type="checkbox" asp-for="@Model.Empleados[i].IsChecked" />
+                    
+                    <div class="col-4 row">
+                        <input type="checkbox" asp-for="@Model.Empleados[i].IsChecked" class="col-1" />
+                        <p class="col-11" style="font-size:0.7em">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo)</p>
+                    </div>
                 }
                 <span asp-validation-for="Empleados" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
         </form>
     </div>
 </div>

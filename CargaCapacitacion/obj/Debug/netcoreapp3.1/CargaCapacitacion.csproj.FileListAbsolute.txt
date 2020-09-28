@@ -12,7 +12,6 @@ C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netc
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.TagHelpers.input.cache
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.TagHelpers.output.cache
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.RazorCoreGenerate.cache
-C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -105,7 +104,6 @@ C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netc
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.csproj.CopyComplete
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.dll
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.pdb
-C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Fichada\Create.cshtml.g.cs
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -146,3 +144,5 @@ C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netc
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Fichada\Create.cshtml.g.cs
+C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs

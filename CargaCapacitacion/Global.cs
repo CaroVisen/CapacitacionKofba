@@ -1,9 +1,4 @@
-﻿using CargaCapacitacion.Models;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace CargaCapacitacion
 {
@@ -11,20 +6,24 @@ namespace CargaCapacitacion
     {
         public static string GetUserSesion()
         {
-            var user = Environment.UserName;
-            
-            if (user != null)
-            {
-                //user = "SA\\AR01013838";
-                var userName = user.Split('\\');
-                if (userName.Length > 1)
-                {
-                    
-                    return userName[1];
-                }
+            //if (HttpContext.Current != null)
+            //{
+                
+            //    var request = HttpContext.Current.Request;
+            //    var user = request.LogonUserIdentity.Name;
+            //    user = "SA\\AR01013838";
+            //    var userName = user.Split('\\');
+            //    if (userName.Length > 0)
+            //    {
+            //        if (userName[1] == "Silve")
+            //        {
+            //            return "TARTGVVTEDES";
+            //        }
+            //        return userName[1];
+            //    }
 
-                return userName[0];
-            }
+            //    return userName[0];
+            //}
             return "";
         }
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CargaCapacitacion.Models;
 using CargaCapacitacion.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargaCapacitacion.Controllers
@@ -34,7 +35,7 @@ namespace CargaCapacitacion.Controllers
             FichadaPantallaViewModel model = new FichadaPantallaViewModel();
             model.Usuario = Global.GetUserSesion();
             ViewBag.usuario = model.Usuario;
-            //Harcodeo usuario
+            //Harcodeo usuario // no funciona deployado, trae: CargaCapacitacion // login?
             var user = "AR03345051";
             usuario = new UserSession();
             usuario.Legajo = model.Usuario;
@@ -88,20 +89,23 @@ namespace CargaCapacitacion.Controllers
 
             foreach(var cur in cursos)
             {
-                CursoViewModel curso = new CursoViewModel();
-                curso.Id = cur.Id;
-                curso.Curso = cur.Titulo;
-                curso.FechaInicio = cur.FechaInicio;
-                curso.FechaFin = cur.FechaFin;
-                if(cur.FechaInicio <= DateTime.Today && cur.FechaFin>= DateTime.Today)
+                
+                if(cur.FechaInicio.Year == DateTime.Today.Year || cur.FechaFin.Year == DateTime.Today.Year)
                 {
+                    CursoViewModel curso = new CursoViewModel();
+                    curso.Id = cur.Id;
+                    curso.Curso = cur.Titulo;
+                    curso.FechaInicio = cur.FechaInicio;
+                    curso.FechaFin = cur.FechaFin;
                     model.Cursos.Add(curso);
                 }
             }
-
+            
+            ViewBag.FechaHoy = DateTime.Today;
             if (usuario.Lugar == "" || usuario.Lugar == null)
             {
-                foreach(var emp in empleados)
+                var empleadosT = await _contextM.HHRR.ToListAsync();
+                foreach (var emp in empleadosT)
                 {
                     EmpleadoViewModel empleado = new EmpleadoViewModel();
                     empleado.Legajo = emp.LEGAJO;
@@ -117,7 +121,7 @@ namespace CargaCapacitacion.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(FichadaPantallaViewModel modelo) 
+        public async Task<ActionResult> Create(FichadaPantallaViewModel modelo) 
         {
             FichadaSPViewModel fichada = new FichadaSPViewModel();
             foreach (var emp in modelo.Empleados) {
@@ -126,10 +130,9 @@ namespace CargaCapacitacion.Controllers
                     fichada.Legajo = emp.Legajo;
                     fichada.Fecha = modelo.Fecha;
                     fichada.Curso = modelo.Curso;
+                    var spRespuesta = await _contextC.Database.ExecuteSqlCommandAsync("SP_CARGA_MANUAL @Legajo, @Curso, @Fecha", new SqlParameter("@Legajo", fichada.Legajo), new SqlParameter("@Curso", fichada.Curso), new SqlParameter("@Fecha", fichada.Fecha));
                 }
-                //mando al sp
             }
-            //clsDAO.SqlExec();
             return View();
         }
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CargaCapacitacion.Models;
 using Microsoft.EntityFrameworkCore;
+using CargaCapacitacion.ViewModels;
 
 namespace CargaCapacitacion.Controllers
 {
@@ -23,8 +24,9 @@ namespace CargaCapacitacion.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
-                return View();
+            var request = HttpContext.;
+
+            return View();
         }
 
         private IActionResult ErrorViewModel()
