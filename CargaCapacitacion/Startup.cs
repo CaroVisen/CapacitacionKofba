@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace CargaCapacitacion
             services.AddControllersWithViews();
             services.AddDbContext<CapacitacionContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CapacitacionConnection")));
             services.AddDbContext<MaestrosContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MaestrosConnection")));
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +55,7 @@ namespace CargaCapacitacion
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Fichada}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿@model CargaCapacitacion.ViewModels.FichadaPantallaViewModel
+﻿@model CargaCapacitacion.ViewModels.FichadaViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -8,6 +8,7 @@
 <h1 style="color: red;">Capacitaciones</h1>
 
 <h4>Carga de asistencias - Usuario : @ViewBag.usuario</h4>
+<h4>userId : @ViewBag.userId</h4>
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -25,7 +26,7 @@
                     <input id="datepicker" asp-for="Fecha" type="text" value="@ViewBag.FechaHoy" class="form-control" placeholder="Fecha" aria-label="Fecha" aria-describedby="basic-addon1">
                     <span asp-validation-for="Fecha" class="text-danger"></span>
                 </div>
-                
+
                 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
                 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
                 <script>

@@ -1,10 +1,51 @@
-﻿@model CargaCapacitacion.ViewModels.LoginViewModel
-
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-  
-</div>
+
+
+
+<input type="button" value="Enviar" class="btn btn-danger" id="sendFichada" />
+
+
+@section scripts{
+    <script>
+
+        $("#sendFichada").click(function () {
+
+            var myData = { "tID": 231456, "usuarios": ["123", "qwe", "eqwe"] }
+
+            $.ajax({
+                url: '/Home/PerformAction/',
+                data: JSON.stringify(myData),
+                type: 'POST',
+                traditional: true,
+                contentType: 'application/json',
+                success: function (data) {
+                    $('#message').html("Success!");
+                }
+            });
+            //var o = new Object();
+            //o.tID = 123;
+            //o.Location = ["asd", "asdasdqw", "asqe123"]
+
+            //$.ajax({
+            //    url: "/Home/Submit",
+            //    dataType: "json",
+            //    type: "POST",
+            //    cache: false,
+            //    data: "data=" + JSON.stringify(o),
+            //    //data: JSON.stringify({ trans : o }),
+            //    contentType: "application/json; charset=utf-8",
+            //    success: function(data) {
+            //        if (data) {
+            //            alert("Success");
+            //        }
+            //    },
+            //    error: function(jqXhr, textStatus, errorThrown) {
+            //        alert(errorThrown);
+            //    }
+            //});
+        })
+    </script>
+}

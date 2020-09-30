@@ -8474,23 +8474,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
+    "C:\\Users\\Silve\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\CargaCapacitacion.csproj",
+      "projectUniqueName": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\CargaCapacitacion.csproj",
       "projectName": "CargaCapacitacion",
-      "projectPath": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\CargaCapacitacion.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\obj\\",
+      "projectPath": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\CargaCapacitacion.csproj",
+      "packagesPath": "C:\\Users\\Silve\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -8552,7 +8552,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

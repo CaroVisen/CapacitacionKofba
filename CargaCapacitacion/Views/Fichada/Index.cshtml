@@ -1,0 +1,119 @@
+﻿@model CargaCapacitacion.ViewModels.FichadaViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="color: red;">Capacitaciones</h1>
+
+<h4>Carga de asistencias - Usuario : @ViewBag.usuario</h4>
+<hr />
+@if (ViewBag.usuario != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="form-group col-5">
+                        <label asp-for="Curso" class="control-label"></label>
+                        <select asp-for="Curso" name="Curso" id="curso" class="form-control" asp-items="@(new SelectList(Model.Cursos, "Id" , "Curso"))">
+                        </select>
+                        <span asp-validation-for="Curso" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-5">
+                        <label asp-for="Fecha" class="control-label"></label>
+                        <input type='text' class="form-control" data-provide="datepicker" style='width: 300px;'>
+                        @*<input id="datepicker" asp-for="Fecha" type="text" value="@ViewBag.FechaHoy" class="form-control" placeholder="Fecha" aria-label="Fecha" aria-describedby="basic-addon1">*@
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-2">
+                        <input type="button" value="Enviar" class="btn btn-danger" id="sendFichada"/>
+                    </div>
+                </div>
+                <label asp-for="Empleados" class="control-label"></label>
+                <div style="width: 100%" class="row">
+                    @for (var i = 0; i < Model.Empleados.Count; i++)
+                    {
+                        @*<input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
+            <input type="hidden" asp-for="@Model.Empleados[i].Nombre" />
+            <input type="hidden" asp-for="@Model.Empleados[i].Apellido" />
+
+            <div class="col-4 row">
+                <input type="checkbox" asp-for="@Model.Empleados[i].IsChecked" class="col-1" onchange="employeeSelected(@Model.Empleados[i].Legajo, '@Model.Empleados[i].Apellido','@Model.Empleados[i].Nombre', this)"/>
+                <p class="col-11" style="font-size:0.7em">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo)</p>
+            </div>*@
+                        <div class="col-4 d-inline">
+                            <input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
+                            <input asp-for="@Model.Empleados[i].IsChecked" class="form-check-input" onchange="employeeSelected('@Model.Empleados[i].Legajo', this)"/>
+                            <label class="form-check-label" style="font-size:0.7em" asp-for="@Model.Empleados[i].IsChecked">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo) </label>
+                        </div>
+                    }
+                    <span asp-validation-for="Empleados" class="text-danger"></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+}
+else
+{
+    <h4>Usted no posee permisos suficientes para acceder al este contenido, por favor contacte con un administrador!</h4>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $('#datepicker').datepicker();
+        var selectedEmpoyees = [];
+        function employeeSelected(legajo, element) {
+
+            //console.log(legajo)
+            //console.log(nombre)
+            //console.log(apellido)
+            //console.log("----------------")
+            //return;
+            //var id = $(element).attr("id");
+            if ($(element).prop("checked") == true) {
+                selectedEmpoyees.push(legajo);
+                //console.log(selectedEmpoyees);
+            } else if (($(element).prop("checked") == false) && (selectedEmpoyees.includes(legajo))) {
+                selectedEmpoyees.pop(legajo);
+                //console.log(selectedEmpoyees);
+            }
+        }
+
+
+        $("#sendFichada").click(function () {
+            var curso = parseInt($("#curso").val());
+            var fecha = $("#datepicker").val();
+
+            var fichada = { "curso": curso, "usuarios": selectedEmpoyees, "fecha": fecha }
+
+            $.ajax({
+                url: '/Fichada/PostFichada/',
+                data: JSON.stringify(fichada),
+                type: 'POST',
+                traditional: true,
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response != null) {
+                        alert("La fichada fue creada con exito");
+                    } else {
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
+}

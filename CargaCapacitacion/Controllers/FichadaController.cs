@@ -4,35 +4,102 @@ using System.Linq;
 using System.Threading.Tasks;
 using CargaCapacitacion.Models;
 using CargaCapacitacion.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargaCapacitacion.Controllers
 {
+    [AllowAnonymous]
     public class FichadaController : Controller
     {
-            private readonly CapacitacionContext _contextC;
-            private readonly MaestrosContext _contextM;
-            public UserSession usuario;
+        private readonly CapacitacionContext _capacitacionDb;
+        private readonly MaestrosContext _maestrosDb;
+        public UserSession usuario;
             
 
-        public FichadaController(CapacitacionContext contextc, MaestrosContext contextm)
+        public FichadaController(CapacitacionContext capacitacionDb, MaestrosContext maestrosDb)
         {
-                _contextC = contextc;
-                _contextM = contextm;
+            _capacitacionDb = capacitacionDb;
+            _maestrosDb = maestrosDb;
         }
-            
 
+        [HttpGet]
         public IActionResult Index()
         {
+            usuario = GetUserSession();
+            ViewBag.usuario = usuario.Name;
+            GetUserLocation();
+            ViewBag.rol = usuario.Lugar;
+            if(usuario.Lugar != "")
+            {
+                FichadaViewModel model = new FichadaViewModel();
+                model.Usuario = usuario.Name;
+
+                List<HHRR> empleados = new List<HHRR>();
+
+                if (usuario.Lugar != "ALL"  )
+                {
+                    empleados = _maestrosDb.HHRR.Where(e => e.DESCRIPCION_LOCAL == usuario.Lugar).ToList();
+                }
+                else
+                {
+                    empleados = _maestrosDb.HHRR.ToList();
+                }
+
+                foreach (var emp in empleados)
+                {
+                    EmpleadoViewModel empleado = new EmpleadoViewModel();
+                    empleado.Legajo = emp.LEGAJO;
+                    empleado.Nombre = emp.NOMBRE;
+                    empleado.Apellido = emp.APELLIDO;
+                    empleado.IsChecked = false;
+                    model.Empleados.Add(empleado);
+                }
+
+                var cursos = _capacitacionDb.Cursos.ToList();
+                var cursosHabilitados = new List<Curso>();
+
+                foreach (var cur in cursos)
+                {
+                    if (cur.FechaInicio.Year == DateTime.Today.Year || cur.FechaFin.Year == DateTime.Today.Year)
+                    {
+                        CursoViewModel curso = new CursoViewModel();
+                        curso.Id = cur.Id;
+                        curso.Curso = cur.Titulo;
+                        curso.FechaInicio = cur.FechaInicio;
+                        curso.FechaFin = cur.FechaFin;
+                        model.Cursos.Add(curso);
+                    }
+                }
+
+                ViewBag.FechaHoy = DateTime.Today;
+        
+                return View(model);
+            }
+
             return View();
+        }
+
+        [HttpPost]
+        [Obsolete]
+        public IActionResult PostFichada([FromBody] CreateFichadaViewModel model)
+        {
+            foreach (var item in model.Usuarios)
+            {
+                _capacitacionDb.Database.ExecuteSqlCommand("SP_CARGA_MANUAL @Legajo, @Curso, @Fecha", new SqlParameter("@Legajo", item), new SqlParameter("@Curso", model.Curso), new SqlParameter("@Fecha", model.Fecha));
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<ActionResult> Create() 
         {
-            FichadaPantallaViewModel model = new FichadaPantallaViewModel();
+            var userId = this.User.Identity.Name;
+
+            ViewBag.userId = userId;
+            FichadaViewModel model = new FichadaViewModel();
             model.Usuario = Global.GetUserSesion();
             ViewBag.usuario = model.Usuario;
             //Harcodeo usuario // no funciona deployado, trae: CargaCapacitacion // login?
@@ -73,7 +140,7 @@ namespace CargaCapacitacion.Controllers
                 usuario.Lugar = "";
             }
             
-            var empleados = await _contextM.HHRR.Where(e=> e.DESCRIPCION_LOCAL == usuario.Lugar).ToListAsync();
+            var empleados = await _maestrosDb.HHRR.Where(e=> e.DESCRIPCION_LOCAL == usuario.Lugar).ToListAsync();
             foreach(var emp in empleados)
             {
                 EmpleadoViewModel empleado = new EmpleadoViewModel();
@@ -84,7 +151,7 @@ namespace CargaCapacitacion.Controllers
                 model.Empleados.Add(empleado);
             }
 
-            var cursos = await _contextC.Cursos.ToListAsync();
+            var cursos = await _capacitacionDb.Cursos.ToListAsync();
             var cursosHabilitados = new List<Curso>();
 
             foreach(var cur in cursos)
@@ -104,7 +171,7 @@ namespace CargaCapacitacion.Controllers
             ViewBag.FechaHoy = DateTime.Today;
             if (usuario.Lugar == "" || usuario.Lugar == null)
             {
-                var empleadosT = await _contextM.HHRR.ToListAsync();
+                var empleadosT = await _maestrosDb.HHRR.ToListAsync();
                 foreach (var emp in empleadosT)
                 {
                     EmpleadoViewModel empleado = new EmpleadoViewModel();
@@ -119,21 +186,71 @@ namespace CargaCapacitacion.Controllers
             return View(model);
         }
 
-
-        [HttpPost]
-        public async Task<ActionResult> Create(FichadaPantallaViewModel modelo) 
+        public UserSession GetUserSession()
         {
-            FichadaSPViewModel fichada = new FichadaSPViewModel();
-            foreach (var emp in modelo.Empleados) {
-                if (emp.IsChecked)
-                {
-                    fichada.Legajo = emp.Legajo;
-                    fichada.Fecha = modelo.Fecha;
-                    fichada.Curso = modelo.Curso;
-                    var spRespuesta = await _contextC.Database.ExecuteSqlCommandAsync("SP_CARGA_MANUAL @Legajo, @Curso, @Fecha", new SqlParameter("@Legajo", fichada.Legajo), new SqlParameter("@Curso", fichada.Curso), new SqlParameter("@Fecha", fichada.Fecha));
-                }
+            var userId = this.User.Identity.Name;
+            if (userId == "DESKTOP-U3KKVUL\\Silve" || userId.ToUpper() == "SA\\TARTGVVTEDES") // PARA PROBAR EN MAQUINAS DEV
+            {
+                userId = "SA\\AR03770054"; //all
+                //userId = "SA\\AR03345051"; //monte grande
             }
-            return View();
+            string legajo;
+            var userName = userId.Split('\\');
+            if (userName.Length > 1)
+            {
+                legajo = userName[1];
+                legajo = legajo.Remove(0, 2);
+            }
+            else
+            {
+                legajo = userName[0];
+            }
+
+            UserSession userSession = new UserSession();
+
+            var user = _maestrosDb.HHRR.Where(u => u.LEGAJO == legajo).FirstOrDefault();
+
+            if (user != null)
+            {
+                userSession.Legajo = user.LEGAJO;
+                userSession.Name = user.APELLIDO + ", " + user.NOMBRE;
+            }
+
+            return userSession;
+        }
+
+        public void GetUserLocation()
+        {
+            switch (usuario.Legajo)
+            {
+                case "03345051": case "01355912":
+                    usuario.Lugar = "MONTE GRANDE";
+                    break;
+                case "03881587":
+                    usuario.Lugar = "PLANTA ALCORTA";
+                    break;
+                case "03559888": case "03084017":
+                    usuario.Lugar = "ROCA/SERVET";
+                    break;
+                case "01001748": case "015563275":
+                    usuario.Lugar = "PARRAL";
+                    break;
+                case "01016107": case "03590695":
+                    usuario.Lugar = "LOMA HERMOSA";
+                    break;
+                case "03352615":
+                    usuario.Lugar = "ADM.CENTRAL";
+                    break;
+                case "01681565": case "00024685":
+                    usuario.Lugar = "U. O. OESTE";
+                    break;
+                case "03770054":
+                    usuario.Lugar = "ALL";
+                    break;
+                default:
+                    usuario.Lugar = "";
+                    break;
+            }
         }
     }
 }

@@ -22,10 +22,22 @@ namespace CargaCapacitacion.Controllers
             _contextM = _context;
         }
 
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var request = HttpContext.;
+            return View();
+        }
 
+        [HttpPost]
+        public JsonResult Submit([FromBody] string data)
+        {
+            Debug.WriteLine(data);
+            return null;
+        }
+
+        [HttpPost]
+        public IActionResult PerformAction([FromBody] trans trans)
+        {
+            // Do some work here
             return View();
         }
 
