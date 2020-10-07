@@ -11778,23 +11778,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
+    "C:\\Users\\Silve\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\CargaCapacitacion.csproj",
+      "projectUniqueName": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\CargaCapacitacion.csproj",
       "projectName": "CargaCapacitacion",
-      "projectPath": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\CargaCapacitacion.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\source\\repos\\CargaCapacitacion\\CargaCapacitacion\\obj\\publish\\win-x86\\",
+      "projectPath": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\CargaCapacitacion.csproj",
+      "packagesPath": "C:\\Users\\Silve\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Silve\\Source\\Repos\\CapacitacionKofba\\CargaCapacitacion\\obj\\publish\\win-x86\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Silve\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -11851,15 +11851,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-            "version": "[3.1.0, 3.1.0]"
+            "version": "[3.1.7, 3.1.7]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x86",
-            "version": "[3.1.0, 3.1.0]"
+            "version": "[3.1.7, 3.1.7]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-            "version": "[3.1.0, 3.1.0]"
+            "version": "[3.1.7, 3.1.7]"
           }
         ],
         "frameworkReferences": {
@@ -11870,7 +11870,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

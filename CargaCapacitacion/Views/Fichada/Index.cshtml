@@ -1,7 +1,7 @@
 ﻿@model CargaCapacitacion.ViewModels.FichadaViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Carga";
 }
 
 <h1 style="color: red;">Capacitaciones</h1>
@@ -12,7 +12,7 @@
 {
     <div class="row">
         <div class="col-md-12">
-            <form>
+            <form enctype="multipart/form-data" asp-action="PostFichada" method="post" >
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="form-group col-5">
@@ -21,32 +21,39 @@
                         </select>
                         <span asp-validation-for="Curso" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-5">
+                    <div class="form-group">
                         <label asp-for="Fecha" class="control-label"></label>
-                        <input type='text' class="form-control" data-provide="datepicker" style='width: 300px;'>
-                        @*<input id="datepicker" asp-for="Fecha" type="text" value="@ViewBag.FechaHoy" class="form-control" placeholder="Fecha" aria-label="Fecha" aria-describedby="basic-addon1">*@
+                        <input asp-for="Fecha" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
                         <span asp-validation-for="Fecha" class="text-danger"></span>
                     </div>
 
+                    <!--<div class="form-group col-5">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <input type='text' asp-for="Fecha" name="Fecha" id="fecha" class="form-control" data-provide="datepicker" style='width: 300px;'>-->
+                    @*<input id="datepicker" asp-for="Fecha" type="text" value="@ViewBag.FechaHoy" class="form-control" placeholder="Fecha" aria-label="Fecha" aria-describedby="basic-addon1">*@
+                    <!--<span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>-->
+
                     <div class="form-group col-2">
-                        <input type="button" value="Enviar" class="btn btn-danger" id="sendFichada"/>
+                        <input type="button" value="Enviar" class="btn btn-danger" id="sendFichada" />
                     </div>
                 </div>
                 <label asp-for="Empleados" class="control-label"></label>
                 <div style="width: 100%" class="row">
                     @for (var i = 0; i < Model.Empleados.Count; i++)
                     {
-                        @*<input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
-            <input type="hidden" asp-for="@Model.Empleados[i].Nombre" />
-            <input type="hidden" asp-for="@Model.Empleados[i].Apellido" />
+                        @*  <input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
+                            <input type="hidden" asp-for="@Model.Empleados[i].Nombre" />
+                            <input type="hidden" asp-for="@Model.Empleados[i].Apellido" />
 
-            <div class="col-4 row">
-                <input type="checkbox" asp-for="@Model.Empleados[i].IsChecked" class="col-1" onchange="employeeSelected(@Model.Empleados[i].Legajo, '@Model.Empleados[i].Apellido','@Model.Empleados[i].Nombre', this)"/>
-                <p class="col-11" style="font-size:0.7em">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo)</p>
-            </div>*@
+                            <div class="col-4 row">
+                                <input type="checkbox" asp-for="@Model.Empleados[i].IsChecked" class="col-1" onchange="employeeSelected(@Model.Empleados[i].Legajo, '@Model.Empleados[i].Apellido','@Model.Empleados[i].Nombre', this)"/>
+                                <p class="col-11" style="font-size:0.7em">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo)</p>
+                            </div>
+                        *@
                         <div class="col-4 d-inline">
                             <input type="hidden" asp-for="@Model.Empleados[i].Legajo" />
-                            <input asp-for="@Model.Empleados[i].IsChecked" class="form-check-input" onchange="employeeSelected('@Model.Empleados[i].Legajo', this)"/>
+                            <input asp-for="@Model.Empleados[i].IsChecked" class="form-check-input" onchange="employeeSelected('@Model.Empleados[i].Legajo', this)" />
                             <label class="form-check-label" style="font-size:0.7em" asp-for="@Model.Empleados[i].IsChecked">@Model.Empleados[i].Nombre @Model.Empleados[i].Apellido (@Model.Empleados[i].Legajo) </label>
                         </div>
                     }
@@ -67,8 +74,20 @@ else
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
+    
+    
+    @*<script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>*@
+
     <script>
-        $('#datepicker').datepicker();
+        //$(".date").datepicker({
+        //    format: 'dd/mm/yyyy'
+        //});
+        //$('#datepicker').datepicker();
+        $("#datepicker").datepicker();
         var selectedEmpoyees = [];
         function employeeSelected(legajo, element) {
 
@@ -103,6 +122,7 @@ else
                 success: function (response) {
                     if (response != null) {
                         alert("La fichada fue creada con exito");
+                        window.location.reload();
                     } else {
                         alert("Something went wrong");
                     }

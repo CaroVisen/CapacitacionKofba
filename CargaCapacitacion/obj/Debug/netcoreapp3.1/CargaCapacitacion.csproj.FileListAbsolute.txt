@@ -148,6 +148,7 @@ C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netc
 C:\Users\Usuario\source\repos\CargaCapacitacion\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\CargaCapacitacion.exe
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\CargaCapacitacion.deps.json
@@ -269,16 +270,16 @@ C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcor
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.csprojAssemblyReference.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.AssemblyInfoInputs.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.AssemblyInfo.cs
-C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.csproj.CoreCompileInputs.cache
-C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.RazorAssemblyInfo.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.RazorAssemblyInfo.cs
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.TagHelpers.input.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.TagHelpers.output.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.RazorCoreGenerate.cache
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Fichada\Create.cshtml.g.cs
+C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Fichada\Index.cshtml.g.cs
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -295,6 +296,5 @@ C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcor
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.dll
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.pdb
 C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.genruntimeconfig.cache
-C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\Razor\Views\Fichada\Index.cshtml.g.cs
-C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.csprojAssemblyReference.cache
-C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.csproj.CoreCompileInputs.cache
+C:\Users\Silve\Source\Repos\CapacitacionKofba\CargaCapacitacion\obj\Debug\netcoreapp3.1\CargaCapacitacion.MvcApplicationPartsAssemblyInfo.cache

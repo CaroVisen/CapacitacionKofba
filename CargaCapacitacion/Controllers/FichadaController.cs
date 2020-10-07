@@ -86,11 +86,13 @@ namespace CargaCapacitacion.Controllers
         [Obsolete]
         public IActionResult PostFichada([FromBody] CreateFichadaViewModel model)
         {
+            var fecha = model.Fecha.ToString();
             foreach (var item in model.Usuarios)
             {
-                _capacitacionDb.Database.ExecuteSqlCommand("SP_CARGA_MANUAL @Legajo, @Curso, @Fecha", new SqlParameter("@Legajo", item), new SqlParameter("@Curso", model.Curso), new SqlParameter("@Fecha", model.Fecha));
+                _capacitacionDb.Database.ExecuteSqlCommand("SP_CARGA_MANUAL @Legajo, @Curso, @Fecha", new SqlParameter("@Legajo", item), new SqlParameter("@Curso", model.Curso), new SqlParameter("@Fecha", fecha));
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Fichada");
+            //return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -188,11 +190,11 @@ namespace CargaCapacitacion.Controllers
 
         public UserSession GetUserSession()
         {
-            var userId = this.User.Identity.Name;
-            if (userId == "DESKTOP-U3KKVUL\\Silve" || userId.ToUpper() == "SA\\TARTGVVTEDES") // PARA PROBAR EN MAQUINAS DEV
+            var userId = this.User.Identity.Name.ToUpper();
+            if (userId == "DESKTOP-U3KKVUL\\SILVE" || userId.ToUpper() == "SA\\TARTGVVTEDES") // PARA PROBAR EN MAQUINAS DEV
             {
-                userId = "SA\\AR03770054"; //all
-                //userId = "SA\\AR03345051"; //monte grande
+                //userId = "SA\\AR03770054"; //all
+                userId = "SA\\AR03345051"; //monte grande
             }
             string legajo;
             var userName = userId.Split('\\');
@@ -226,7 +228,7 @@ namespace CargaCapacitacion.Controllers
                 case "03345051": case "01355912":
                     usuario.Lugar = "MONTE GRANDE";
                     break;
-                case "03881587":
+                case "03881587": case "00025061": case "00025109":
                     usuario.Lugar = "PLANTA ALCORTA";
                     break;
                 case "03559888": case "03084017":
